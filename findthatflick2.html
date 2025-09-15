@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findthatflick</title>
+    <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/f6/9f/92/f69f92f4721a88bc304324937320d5b7.jpg">
+    
+    <style>
+        :root {
+            --bg-dark: #000;
+            --card-bg: rgba(0, 0, 0, 0.9);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --text-white: #fff;
+            --text-light-grey: rgba(255, 255, 255, 0.7);
+            --placeholder-color: rgba(255, 255, 255, 0.5);
+            --button-bg: #fff;
+            --button-text: #000;
+            --focus-ring: rgba(255, 255, 255, 0.3);
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            color: var(--text-white);
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.78vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .search-card {
+            width: 100%;
+            max-width: 28rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .description {
+            color: var(--text-light-grey);
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+        
+        .search-input, .category-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1); 
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-white);
+            box-sizing: border-box;
+            appearance: none; 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.5em;
+        }
+
+        .search-input::placeholder {
+            color: var(--placeholder-color);
+        }
+
+        .search-input:focus, .category-select:focus {
+            outline: none;
+            border-color: transparent;
+            box-shadow: 0 0 0 2px var(--focus-ring);
+        }
+
+        .search-button {
+            width: 100%;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 1.125rem;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        .search-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pirate-text {
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1.5rem;
+            font-size: 0.950rem;
+        }
+
+        .creator-info {
+            margin-top: 2rem;
+        }
+
+        .creator-info div {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .creator-text {
+            color: var(--text-light-grey);
+            font-size: 0.875rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .category-select option {
+            background-color: var(--card-bg);
+            color: var(--text-white);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <iframe 
+            src="https://www.youtube.com/embed/DyIeofKksXQ?autoplay=1&mute=1&loop=1&playlist=DyIeofKksXQ&controls=0&modestbranding=1&rel=0&showinfo=0"
+            title="F1 | Official Hindi Trailer"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="content-container">
+        <div class="search-card">
+            <h1 class="title">FindthatFlick</h1>
+            <p class="description">
+                Enter a media name to search on multiple sites.
+            </p>
+            <form id="dorkSearchForm">
+                <div class="form-group">
+                    <label for="mediaCategory">Select a Category:</label>
+                    <select id="mediaCategory" class="category-select">
+                        <option value="movies">Movies</option>
+                        <option value="games">Games</option>
+                        <option value="books">Books</option>
+                        <option value="software">Software</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mediaInput">Enter a Name:</label>
+                    <input
+                        type="text"
+                        id="mediaInput"
+                        placeholder="Inception"
+                        required
+                        class="search-input"
+                    />
+                </div>
+                <button type="submit" class="search-button">
+                    Search All Sites
+                </button>
+            </form>
+            <div class="pirate-text" onclick="window.location.href='https://hastebin.com/share/oleliqumus.sql'" style="cursor: pointer;">
+                Cheat sheet / help
+            </div>
+        </div>
+        <div class="creator-info">
+            <p class="creator-text">Created by vsx</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dorkSearchForm = document.getElementById('dorkSearchForm');
+            const mediaInput = document.getElementById('mediaInput');
+            const mediaCategory = document.getElementById('mediaCategory');
+
+            dorkSearchForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const mediaName = mediaInput.value.trim();
+                const category = mediaCategory.value;
+                
+                if (!mediaName) {
+                    alert('Please enter a name.');
+                    return;
+                }
+                
+                const popupsAllowed = localStorage.getItem('popupsAllowed');
+            
+                if (popupsAllowed === null) {
+                    const userConfirmation = confirm("This search will open multiple tabs. You must allow pop-ups for this site. Click OK to continue.");
+
+                    if (userConfirmation) {
+                        localStorage.setItem('popupsAllowed', 'true');
+                    } else {
+                        localStorage.setItem('popupsAllowed', 'false');
+                        alert("Search canceled because you did not allow pop-ups.");
+                        return;
+                    }
+                } else if (popupsAllowed === 'false') {
+                    alert("Search canceled. Pop-ups are not allowed for this site. To proceed, please enable pop-ups for this site and refresh the page.");
+                    return;
+                }
+
+                const encodedQuery = encodeURIComponent(mediaName);
+                let searchUrls = [];
+
+                if (category === 'movies') {
+                    searchUrls = [
+                        `https://www.google.com/search?q=(site:psa.wf OR site:pahe.ink OR site:olamovies.blog OR site:vegamovies.gmbh OR site:uhdmovies.tube) "${mediaName}"`,
+                        `https://olamovies.blog/?s=${encodedQuery}`,
+                        `https://vegamovies.gmbh/?s=${encodedQuery}`,
+                        `https://uhdmovies.tube/?s=${encodedQuery}`,
+                        `https://katmoviehd.observer/?s=${encodedQuery}`,
+                        `https://hdhub4u.florist/?s=${encodedQuery}`,
+                        `https://psa.wf/?s=${encodedQuery}`
+                    ];
+                } 
+                else if (category === 'games') {
+                    searchUrls = [
+                        `https://www.google.com/search?q=(site:koyso.to OR site:fitgirl-repacks.site) "${mediaName}"`,
+                        `https://fitgirl-repack.site/?s=${encodedQuery}`, 
+                        `https://koyso.to/?keywords=${encodedQuery}`
+                    ];
+                } 
+                else if (category === 'books') {
+                    searchUrls = [
+                        `https://www.google.com/search?q=(site:libgen.is OR site:z-lib.org OR site:b-ok.cc) "${mediaName}"`,
+                        `https://b-ok.cc/s/?q=${encodedQuery}`,
+                        `https://epdf.pub/s/?q=${encodedQuery}`,
+                        `https://libgen.is/search.php?req=${encodedQuery}`
+                    ];
+                } 
+                else if (category === 'software') {
+                    searchUrls = [
+                        `https://www.google.com/search?q=(site:filehippo.com OR site:softpedia.com OR site:techspot.com) "${mediaName}"`,
+                    ];
+                }
+
+                if (searchUrls.length > 0) {
+                    searchUrls.forEach(url => {
+                        window.open(url, '_blank');
+                    });
+                } else {
+                    alert("No search sites configured for this category.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
